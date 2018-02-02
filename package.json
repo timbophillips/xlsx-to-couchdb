@@ -16,7 +16,6 @@
     "prettyjson": "^1.2.1",
     "typescript": "^2.8.0-dev.20180201",
     "xlsx": "^0.11.18",
-    "xlsx-to-json": "^0.3.0",
     "yargs": "^11.0.0"
   }
 }
