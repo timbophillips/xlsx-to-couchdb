@@ -9,13 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^9.4.0",
-    "@types/prettyjson": "0.0.28",
-    "@types/xlsx": "0.0.36",
-    "@types/yargs": "^10.0.1",
     "prettyjson": "^1.2.1",
     "typescript": "^2.8.0-dev.20180201",
     "xlsx": "^0.11.18",
     "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.0",
+    "@types/prettyjson": "0.0.28",
+    "@types/xlsx": "0.0.36",
+    "@types/yargs": "^10.0.1"
   }
 }
