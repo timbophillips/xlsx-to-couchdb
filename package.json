@@ -14,7 +14,6 @@
     "@types/xlsx": "0.0.36",
     "@types/yargs": "^10.0.1",
     "prettyjson": "^1.2.1",
-    "ts-node": "^4.1.0",
     "typescript": "^2.8.0-dev.20180201",
     "xlsx": "^0.11.18",
     "xlsx-to-json": "^0.3.0",
