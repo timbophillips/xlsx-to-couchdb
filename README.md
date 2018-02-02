@@ -1,5 +1,5 @@
 # xlsx-to-couchdb
-simple upload of Excel spreadsheet to local CouchDB database
+node typescript command line app for simple upload of Excel spreadsheet to local CouchDB database
 
 ## to use
 ```
