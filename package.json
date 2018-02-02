@@ -2,19 +2,19 @@
   "name": "xlsx-to-pretty-json",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "xlsx-to-couchdb.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "tim phillips",
   "license": "ISC",
   "dependencies": {
     "prettyjson": "^1.2.1",
-    "typescript": "^2.8.0-dev.20180201",
     "xlsx": "^0.11.18",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
+    "typescript": "^2.8.0-dev.20180201",
     "@types/node": "^9.4.0",
     "@types/prettyjson": "0.0.28",
     "@types/xlsx": "0.0.36",
