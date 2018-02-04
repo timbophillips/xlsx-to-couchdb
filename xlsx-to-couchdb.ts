@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import { readFile, utils, WorkBook } from "xlsx";
 import { request } from "http";
 import { Command } from "commander";
