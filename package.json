@@ -1,5 +1,5 @@
 {
-  "name": "xlsx-to-pretty-json",
+  "name": "xlsx-to-couchdb",
   "version": "1.0.0",
   "description": "",
   "main": "xlsx-to-couchdb.js",
