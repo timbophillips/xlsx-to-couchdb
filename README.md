@@ -8,3 +8,8 @@ cd xlsx-to-couchdb
 npm install
 node ./xlsx-to-couchdb.js [Excel file] [CouchDB databse name]
 ```
+
+```
+npm install -g xlsx-to-couchdb
+xlsx-to-couchdb --file [xlsx pathname]c--database [CoudbDB database name]
+```
