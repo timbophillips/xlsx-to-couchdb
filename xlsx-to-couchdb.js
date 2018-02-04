@@ -9,8 +9,8 @@ var uploadJSON2CouchDB_1 = require("./uploadJSON2CouchDB");
 var command = new commander_1.Command();
 command
     .version("0.1.0")
-    .option("-f, --file [pathname]", "The Excel xlsx file to use")
-    .option("-d, --database [CoudbDB database name]", "The name of the CouchDB database")
+    .option("-f, --file [pathname]", "mandantory - The Excel xlsx file to use")
+    .option("-d, --database [CoudbDB database name]", "mandantory - The name of the CouchDB database")
     .parse(process.argv);
 // check that the two mandantory arguments are provided
 if (!command.file || !command.database) {

@@ -11,10 +11,10 @@ import { postJSON } from "./uploadJSON2CouchDB";
 const command = new Command();
 command
   .version("0.1.0")
-  .option("-f, --file [pathname]", "The Excel xlsx file to use")
+  .option("-f, --file [pathname]", "mandantory - The Excel xlsx file to use")
   .option(
     "-d, --database [CoudbDB database name]",
-    "The name of the CouchDB database"
+    "mandantory - The name of the CouchDB database"
   )
   .parse(process.argv);
 // check that the two mandantory arguments are provided
