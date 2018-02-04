@@ -1,81 +1,56 @@
 import { readFile, utils, WorkBook } from "xlsx";
-import { argv } from "yargs";
 import { request } from "http";
-import { render } from "prettyjson";
 import { Command } from "commander";
+import { Subscription } from "rxjs/Subscription";
 import { beautifulJSON } from "./beautifulJSON";
+import { postJSON } from "./uploadJSON2CouchDB";
 
+// using commander.js argument parsing
 const command = new Command();
-const defaultFile = "Book1.xls";
-const defaultCouchDB = "xlsxupload";
 command
   .version("0.1.0")
-  .option("-f, --file [pathname]", "The Excel xlsx file to use", defaultFile)
+  .option("-f, --file [pathname]", "The Excel xlsx file to use")
   .option(
     "-d, --database [CoudbDB database name]",
-    "The name of the CouchDB database",
-    defaultCouchDB
+    "The name of the CouchDB database"
   )
   .parse(process.argv);
+// check that the two mandantory arguments are provided
+if (!command.file || !command.database) {
+  command.help();
+}
+// assign them to string constants
 const xlsxFile = command.file;
 const couchdbName = command.database;
-
-// tell user what we are using
-console.log(
-  "the excel file is %s and the couchdb name is %s",
-  xlsxFile,
-  couchdbName
-);
-
-// use xlsx library to read the xlsx file to an object
+// use old school try..catch error handling
 try {
+  // use xlsx library to read the xlsx file to an object
   const workbook = readFile(xlsxFile);
-
-  // options set for the http post
-  // couchdb on default port at localhost
-  const postOptions = {
-    hostname: "127.0.0.1",
-    port: 5984,
-    path: "/" + couchdbName + "/_bulk_docs",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
   // loop through the worksheets in the xlsx workbook
   workbook.SheetNames.forEach(sheetName => {
     // use xlsx library utils to convert worksheet to JSON
     const jsonOutput = utils.sheet_to_json(workbook.Sheets[sheetName]);
-
     // tell the user whats happening
     console.log(
-      "sheet %s in workbook %s converted to JSON:",
+      "converting sheet %s in workbook %s to JSON...",
       sheetName,
       xlsxFile
     );
+    // show user the JSON created from the xlsx
     console.log(beautifulJSON(jsonOutput));
-    console.log("uploading %s as JSON to %s", sheetName, couchdbName);
-
-    // old school nodeJS http post (with prettyjson library)
-    const req = request(postOptions, res => {
-      console.log("Status: " + res.statusCode);
-      console.log("Headers: " + render(res.headers));
-      res.setEncoding("utf8");
-      res.on("data", body => {
-        console.log("Body: " + render(JSON.parse(body as string)));
-      });
+    // more user noticiation
+    console.log("uploading %s as JSON to %s...", sheetName, couchdbName);
+    // call the function from the module to post the JSON to the _bulk_docs API
+    postJSON(jsonOutput, couchdbName).subscribe(x => {
+      // send the output of the observable to the console
+      // this will either be the output of Apache CouchDB
+      // if it is up or the nodeJS http library if not
+      console.log(beautifulJSON(x));
     });
-    req.on("error", e => {
-      console.log("problem with request: " + e.message);
-    });
-    // write data to request body
-    // note the addition of docs: to the JSON string to
-    // make it compatible with couchDB bulk_docs upload
-    req.write('{"docs": ' + JSON.stringify(jsonOutput) + "}");
-    req.end();
   });
 } catch (error) {
+  // the obvious error is the user providing a filename that
+  // doesn't exist
   if (error.code === "ENOENT") {
     console.log(
       "The supplied filename %s must point to a valid xlsx file",
