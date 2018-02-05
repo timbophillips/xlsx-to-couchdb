@@ -1,6 +1,6 @@
 {
   "name": "xlsx-to-couchdb",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "converts xlsx to JSON and uploads to CouchDB _bulk_docs",
   "keywords": [
     "CouchDB",
