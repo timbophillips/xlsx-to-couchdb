@@ -1,5 +1,5 @@
 # xlsx-to-couchdb
-NodeJs command line app for simple upload of Excel spreadsheet to a CouchDB or PouchDB database. Ideally suited to simple spreadsheets with row 1 as keys and each subsequent row as a document of values.
+NodeJs command line app for simple upload of Excel or Open Office spreadsheet to a CouchDB or PouchDB database. Ideally suited to simple spreadsheets with row 1 as keys and each subsequent row as a document of values.
 
 https://github.com/timbophillips/xlsx-to-couchdb
 

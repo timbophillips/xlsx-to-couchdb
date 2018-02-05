@@ -9,7 +9,7 @@ var uploadJSON2CouchDB_1 = require("./uploadJSON2CouchDB");
 var command = new commander_1.Command();
 command
     .version("0.1.0")
-    .option("-f, --file <pathname>", "required - The Excel xlsx file to use")
+    .option("-f, --file <pathname>", "required - The Excel .xlsx or Open Office .nods file to use")
     .option("-d, --database <CoudbDB database name>", "required - The name of the CouchDB database")
     .option("-p, --port [port]", "optional - CouchDB server port", 5984)
     .option("-h, --hostname [hostname]", "optional - CouchDB web server hostname", "127.0.0.1")
