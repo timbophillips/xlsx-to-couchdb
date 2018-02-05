@@ -24,13 +24,18 @@ exports.beautifulJSON = function (jsonStringOrObject) {
         }
     };
     var json = {};
-    switch (typeof jsonStringOrObject) {
-        case "string":
-            json = JSON.parse(jsonStringOrObject);
-            break;
-        default:
-            json = jsonStringOrObject;
-            break;
+    try {
+        switch (typeof jsonStringOrObject) {
+            case "string":
+                return colorize(JSON.stringify(JSON.parse(jsonStringOrObject), null, 2), colorOptions);
+            case "object":
+                return colorize(JSON.stringify(jsonStringOrObject, null, 2), colorOptions);
+            default:
+                return jsonStringOrObject;
+        }
     }
-    return colorize(JSON.stringify(json, null, 2), colorOptions);
+    catch (error) {
+        // any problems just send back what was sent in unchanged
+        return jsonStringOrObject;
+    }
 };

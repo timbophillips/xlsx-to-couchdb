@@ -9,13 +9,21 @@ var uploadJSON2CouchDB_1 = require("./uploadJSON2CouchDB");
 var command = new commander_1.Command();
 command
     .version("0.1.0")
-    .option("-f, --file [pathname]", "mandantory - The Excel xlsx file to use")
-    .option("-d, --database [CoudbDB database name]", "mandantory - The name of the CouchDB database")
+    .option("-f, --file <pathname>", "required - The Excel xlsx file to use")
+    .option("-d, --database <CoudbDB database name>", "required - The name of the CouchDB database")
+    .option("-p, --port [port]", "optional - CouchDB server port", 5984)
+    .option("-h, --hostname [hostname]", "optional - CouchDB web server hostname", "127.0.0.1")
     .parse(process.argv);
 // check that the two mandantory arguments are provided
 if (!command.file || !command.database) {
     command.help();
 }
+// assign user port or default depending on input
+var port1 = command.port ? parseInt(command.port) : 5984;
+var port = (-1 < port1 && port1 < 65536) ? port1 : 5984;
+// assign hostname to user inpunt if done correctly
+// otherwise use default local server
+var hostname = command.hostname || "127.0.0.1";
 // assign them to string constants
 var xlsxFile = command.file;
 var couchdbName = command.database;
@@ -32,9 +40,9 @@ try {
         // show user the JSON created from the xlsx
         console.log(beautifulJSON_1.beautifulJSON(jsonOutput));
         // more user noticiation
-        console.log("uploading %s as JSON to %s...", sheetName, couchdbName);
+        console.log("uploading %s as JSON to %s on server at %s:%s...", sheetName, couchdbName, hostname, port.toString());
         // call the function from the module to post the JSON to the _bulk_docs API
-        uploadJSON2CouchDB_1.postJSON(jsonOutput, couchdbName).subscribe(function (x) {
+        uploadJSON2CouchDB_1.postJSON(jsonOutput, couchdbName, hostname, port).subscribe(function (x) {
             // send the output of the observable to the console
             // this will either be the output of Apache CouchDB
             // if it is up or the nodeJS http library if not

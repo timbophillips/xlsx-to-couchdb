@@ -17,13 +17,24 @@ export const beautifulJSON = (jsonStringOrObject: object | string): string => {
   };
 
   let json: object = {};
-  switch (typeof jsonStringOrObject) {
-    case "string":
-      json = JSON.parse(jsonStringOrObject as string);
-      break;
-    default:
-      json = jsonStringOrObject as object;
-      break;
+
+  try {
+    switch (typeof jsonStringOrObject) {
+      case "string":
+        return colorize(
+          JSON.stringify(JSON.parse(jsonStringOrObject as string), null, 2),
+          colorOptions
+        );
+      case "object":
+        return colorize(
+          JSON.stringify(jsonStringOrObject as object, null, 2),
+          colorOptions
+        );
+      default:
+        return jsonStringOrObject as string;
+    }
+  } catch (error) {
+    // any problems just send back what was sent in unchanged
+    return jsonStringOrObject as string;
   }
-  return colorize(JSON.stringify(json, null, 2), colorOptions);
 };

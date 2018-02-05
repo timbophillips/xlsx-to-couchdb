@@ -5,8 +5,8 @@ import { Observable } from "rxjs/Observable";
 // options set for the http post
 // couchdb on default port at localhost
 let _postOptions: RequestOptions = {
-  hostname: "127.0.0.1",
-  port: 5984,
+  // hostname: "127.0.0.1",
+  // port: 5984,
   path: "",
   method: "POST",
   headers: {
@@ -21,8 +21,13 @@ let _stream = new Subject<string>();
 // from the server
 export const postJSON = (
   json: object,
-  couchdbName: string
+  couchdbName: string,
+  hostname?: string,
+  port?: number,
 ): Observable<string> => {
+  // if none provided use the default port and local server
+  _postOptions.port = port || 5984;
+  _postOptions.hostname = hostname || '127.0.0.1';
   // calls the internal function
   // to make the http post request
   _postJSON(json, couchdbName);
