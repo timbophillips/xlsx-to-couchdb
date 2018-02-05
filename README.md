@@ -3,6 +3,8 @@ NodeJs command line app for simple upload of Excel or Open Office spreadsheet to
 
 https://github.com/timbophillips/xlsx-to-couchdb
 
+Thanks to the xlsx npm module it supports a wide range of spreadsheet and spreadsheet-like formats (https://www.npmjs.com/package/xlsx#file-formats)
+
 ## to use
 
 ### download using npm
