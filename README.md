@@ -30,7 +30,7 @@ node ./xlsx-to-couchdb.js --file [xlsx pathname] --database [CoudbDB database na
   Options:
 
     -V, --version                           output the version number
-    -f, --file <pathname>                   required - The Excel xlsx file to use
+    -f, --file <pathname>                   required - The Excel .xlsx / .xls or Open Office .ods file to use
     -d, --database <CoudbDB database name>  required - The name of the CouchDB database
     -p, --port [port]                       optional - CouchDB server port (default: 5984)
     -h, --hostname [hostname]               optional - CouchDB web server hostname (default: 127.0.0.1)

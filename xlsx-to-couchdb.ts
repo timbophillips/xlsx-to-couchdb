@@ -12,7 +12,7 @@ import { isNumber } from "util";
 const command = new Command();
 command
   .version("0.1.0")
-  .option("-f, --file <pathname>", "required - The Excel .xlsx or Open Office .nods file to use")
+  .option("-f, --file <pathname>", "required - The Excel .xlsx / .xls or Open Office .ods file to use")
   .option(
     "-d, --database <CoudbDB database name>",
     "required - The name of the CouchDB database"
