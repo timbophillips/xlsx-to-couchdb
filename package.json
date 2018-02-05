@@ -1,7 +1,20 @@
 {
   "name": "xlsx-to-couchdb",
-  "version": "1.0.6",
-  "description": "",
+  "version": "1.0.7",
+  "description": "converts xlsx to JSON and uploads to CouchDB _bulk_docs",
+  "keywords": [
+    "CouchDB",
+    "couchdb",
+    "coudh-db",
+    "PouchDB",
+    "pouchdb",
+    "pouch-db",
+    "excel",
+    "xlsx",
+    "JSON",
+    "json"
+  ],
+  "homepage": "https://github.com/timbophillips/xlsx-to-couchdb",
   "main": "xlsx-to-couchdb.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
