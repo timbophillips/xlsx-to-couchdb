@@ -1,5 +1,5 @@
 # xlsx-to-couchdb
-node typescript command line app for simple upload of Excel spreadsheet to local CouchDB database
+NodeJs command line app for simple upload of Excel spreadsheet to local CouchDB database. Ideally suited to simple spreadsheets with row 1 as keys and each subsequent row as a document of values.
 
 ## to use
 ### download from github
@@ -14,4 +14,19 @@ node ./xlsx-to-couchdb.js --file [xlsx pathname] --database [CoudbDB database na
 ```
 npm install -g xlsx-to-couchdb
 xlsx-to-couchdb --file [xlsx pathname] --database [CoudbDB database name]
+```
+### more options
+```
+
+  Usage: xlsx-to-couchdb [options]
+
+
+  Options:
+
+    -V, --version                           output the version number
+    -f, --file <pathname>                   required - The Excel xlsx file to use
+    -d, --database <CoudbDB database name>  required - The name of the CouchDB database
+    -p, --port [port]                       optional - CouchDB server port (default: 5984)
+    -h, --hostname [hostname]               optional - CouchDB web server hostname (default: 127.0.0.1)
+    -h, --help                              output usage information
 ```
