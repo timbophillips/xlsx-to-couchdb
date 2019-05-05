@@ -1,12 +1,9 @@
 #! /usr/bin/env node
 
-import { readFile, utils, WorkBook } from "xlsx";
-import { request } from "http";
+import { readFile, utils } from "xlsx";
 import { Command } from "commander";
-import { Subscription } from "rxjs/Subscription";
 import { beautifulJSON } from "./beautifulJSON";
 import { postJSON } from "./uploadJSON2CouchDB";
-import { isNumber } from "util";
 
 // using commander.js argument parsing
 const command = new Command();
